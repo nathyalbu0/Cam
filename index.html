@@ -3,51 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checklist Réveillon em Alter do Chão</title>
+    <title>Checklist Réveillon Camille</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         :root {
             --royal-blue: #4169e1;
-            --royal-blue-light: #5d7ce8;
+            --royal-blue-light: #5a7de6;
             --royal-blue-dark: #2a4fcc;
-            --white-heart: #ffffff;
-            --accent: #ffde59;
-            --light: #f8f9fa;
-            --text: #333;
-            --text-light: #666;
-            --border: #e0e0e0;
-            --success: #5cb85c;
-            --warning: #f0ad4e;
-            --shadow: rgba(0, 0, 0, 0.1);
-            --beach-blue: #87ceeb;
-            --beach-sand: #f4e4c1;
+            --white: #ffffff;
+            --white-transparent: rgba(255, 255, 255, 0.9);
+            --off-white: #f8f9fa;
+            --text-dark: #2c3e50;
+            --text-light: #5d6d7e;
+            --shadow: rgba(65, 105, 225, 0.15);
+            --success: #4CAF50;
+            --transition: all 0.3s ease;
         }
 
         body {
-            background-color: #f9f7f5;
-            color: var(--text);
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #f5f7ff 0%, #eef2ff 100%);
+            color: var(--text-dark);
             line-height: 1.6;
-            background-image: 
-                linear-gradient(to bottom, rgba(65, 105, 225, 0.05), rgba(244, 228, 193, 0.05)),
-                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.9) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.7) 0%, transparent 50%);
             min-height: 100vh;
             padding-bottom: 40px;
         }
 
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
         .header {
-            background: linear-gradient(135deg, var(--royal-blue), var(--royal-blue-light));
-            color: var(--white-heart);
-            padding: 20px;
+            background: linear-gradient(135deg, var(--royal-blue), var(--royal-blue-dark));
+            color: var(--white);
+            padding: 30px 0;
             text-align: center;
-            box-shadow: 0 4px 12px var(--shadow);
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 4px 20px var(--shadow);
+            margin-bottom: 30px;
             position: relative;
             overflow: hidden;
         }
@@ -57,118 +59,119 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
+            right: 0;
             height: 100%;
             background-image: 
-                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,30 Q60,20 70,30 T90,30 Q95,35 90,40 T90,50 Q85,55 80,50 T60,50 Q55,45 50,50 T30,50 Q25,55 20,50 T10,50 Q5,45 10,40 T10,30 Q20,20 30,30 T50,30' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E"),
-                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30,70 Q40,60 50,70 T70,70 Q75,75 70,80 T70,90 Q65,95 60,90 T40,90 Q35,85 30,90 T10,90 Q5,85 10,80 T10,70 Q20,60 30,70' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E");
-            background-repeat: repeat;
-            opacity: 0.15;
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .heart-icon {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            animation: gentlePulse 3s infinite ease-in-out;
+            display: inline-block;
+        }
+
+        @keyframes gentlePulse {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.05); opacity: 1; }
         }
 
         .header h1 {
-            font-size: 1.8rem;
-            margin-bottom: 5px;
-            position: relative;
-            z-index: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 15px;
+            letter-spacing: 0.5px;
         }
 
-        .header p {
-            font-size: 1rem;
+        .header-subtitle {
+            font-size: 1.1rem;
             opacity: 0.95;
+            font-weight: 300;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        /* Message Box */
+        .message-container {
             position: relative;
-            z-index: 1;
+            margin-bottom: 30px;
+        }
+
+        .message-box {
+            background: var(--white-transparent);
+            backdrop-filter: blur(10px);
+            border-radius: 18px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 25px var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .message-box p {
+            font-size: 1.15rem;
+            color: var(--text-dark);
+            line-height: 1.6;
         }
 
         .heart-divider {
             display: flex;
+            align-items: center;
             justify-content: center;
-            align-items: center;
             margin: 15px 0;
-            gap: 8px;
-        }
-
-        .heart-divider .heart {
-            color: var(--white-heart);
-            font-size: 1.2rem;
-            opacity: 0.8;
-        }
-
-        .heart-divider .line {
-            height: 1px;
-            width: 30px;
-            background-color: var(--white-heart);
-            opacity: 0.5;
-        }
-
-        .alert {
-            background-color: rgba(255, 255, 255, 0.95);
-            color: var(--text);
-            padding: 15px;
-            margin: 20px;
-            border-radius: 12px;
-            border-left: 5px solid var(--royal-blue);
-            box-shadow: 0 3px 10px var(--shadow);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .alert::before {
-            content: "💖";
-            position: absolute;
-            right: 10px;
-            bottom: 5px;
-            font-size: 2rem;
-            opacity: 0.1;
-        }
-
-        .alert i {
             color: var(--royal-blue);
-            font-size: 1.5rem;
+            opacity: 0.7;
         }
 
-        .alert p {
+        .heart-divider i {
+            margin: 0 10px;
+            font-size: 0.9rem;
+        }
+
+        .heart-divider::before,
+        .heart-divider::after {
+            content: "";
             flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--royal-blue), transparent);
         }
 
-        .progress-container {
-            background-color: var(--white-heart);
-            margin: 20px;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 3px 10px var(--shadow);
+        /* Progress Section */
+        .progress-section {
+            background: var(--white);
+            border-radius: 18px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px var(--shadow);
             text-align: center;
-            border: 1px solid rgba(65, 105, 225, 0.1);
         }
 
         .progress-title {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 15px;
-            font-weight: 600;
-            color: var(--text);
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            color: var(--text-dark);
         }
 
         .progress-bar {
-            height: 12px;
-            background-color: var(--border);
-            border-radius: 6px;
+            height: 8px;
+            background: var(--off-white);
+            border-radius: 4px;
             overflow: hidden;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
         }
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(to right, var(--royal-blue-light), var(--royal-blue));
-            border-radius: 6px;
-            transition: width 0.5s ease;
+            background: linear-gradient(90deg, var(--royal-blue-light), var(--royal-blue));
+            border-radius: 4px;
+            width: 0%;
+            transition: var(--transition);
             position: relative;
         }
 
@@ -177,250 +180,330 @@
             position: absolute;
             top: 0;
             right: 0;
+            bottom: 0;
             width: 20px;
-            height: 100%;
             background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3));
         }
 
         .progress-text {
-            font-size: 0.9rem;
             color: var(--text-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
+            font-size: 0.95rem;
+            font-style: italic;
         }
 
+        /* Checklist Section */
         .checklist-container {
             display: flex;
             flex-direction: column;
             gap: 25px;
-            margin: 20px;
         }
 
         .category {
-            background-color: var(--white-heart);
-            border-radius: 12px;
+            background: var(--white);
+            border-radius: 18px;
             overflow: hidden;
-            box-shadow: 0 3px 10px var(--shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(65, 105, 225, 0.1);
+            box-shadow: 0 5px 20px var(--shadow);
+            transition: var(--transition);
         }
 
         .category:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(65, 105, 225, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px var(--shadow);
         }
 
         .category-header {
-            background: linear-gradient(to right, var(--royal-blue), var(--royal-blue-light));
-            color: var(--white-heart);
-            padding: 15px 20px;
+            background: linear-gradient(135deg, var(--royal-blue), var(--royal-blue-light));
+            color: var(--white);
+            padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            position: relative;
-        }
-
-        .category-header::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10,3 Q12,1 14,3 T18,3 Q19,4 18,5 T18,7 Q16,9 14,7 T10,7 Q9,6 10,5 T10,3' fill='%23ffffff' fill-opacity='0.2'/%3E%3C/svg%3E");
-            opacity: 0.3;
         }
 
         .category-header h2 {
             font-size: 1.3rem;
+            font-weight: 400;
             display: flex;
             align-items: center;
-            gap: 10px;
-            position: relative;
-            z-index: 1;
+            gap: 12px;
         }
 
         .category-count {
-            background-color: rgba(255, 255, 255, 0.3);
-            padding: 4px 10px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
             border-radius: 20px;
             font-size: 0.9rem;
-            position: relative;
-            z-index: 1;
+            font-weight: 500;
         }
 
         .items-list {
-            padding: 20px;
+            padding: 25px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 15px;
         }
 
         .item {
             display: flex;
             align-items: center;
             gap: 15px;
-            padding: 12px;
-            border-radius: 8px;
-            transition: all 0.2s;
+            padding: 15px;
+            border-radius: 12px;
             cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid transparent;
         }
 
         .item:hover {
-            background-color: rgba(65, 105, 225, 0.05);
+            background: rgba(65, 105, 225, 0.03);
+            border-color: rgba(65, 105, 225, 0.1);
         }
 
         .item.unchecked {
-            background-color: rgba(65, 105, 225, 0.03);
-            border-left: 3px solid var(--royal-blue);
-            position: relative;
-        }
-
-        .item.unchecked::before {
-            content: "💭";
-            position: absolute;
-            right: 10px;
-            opacity: 0.3;
-            font-size: 0.9rem;
+            background: rgba(65, 105, 225, 0.02);
         }
 
         .checkbox {
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
+            width: 24px;
+            height: 24px;
             border: 2px solid var(--royal-blue);
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
             flex-shrink: 0;
-            transition: all 0.2s;
-            background-color: var(--white-heart);
-        }
-
-        .checkbox:hover {
-            transform: scale(1.1);
+            transition: var(--transition);
+            background: var(--white);
         }
 
         .checkbox.checked {
-            background-color: var(--royal-blue);
+            background: var(--royal-blue);
             border-color: var(--royal-blue);
         }
 
         .checkbox.checked::after {
             content: "✓";
-            color: var(--white-heart);
+            color: var(--white);
             font-size: 14px;
             font-weight: bold;
         }
 
         .item-label {
             flex: 1;
-            font-size: 1rem;
+            font-size: 1.05rem;
+            color: var(--text-dark);
+            transition: var(--transition);
         }
 
         .item.checked .item-label {
             text-decoration: line-through;
             color: var(--text-light);
+            opacity: 0.8;
         }
 
         .item-icon {
             color: var(--royal-blue);
-            font-size: 1.2rem;
+            opacity: 0.7;
+            font-size: 1.1rem;
             width: 30px;
             text-align: center;
         }
 
+        /* Love Messages */
+        .love-message {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--white);
+            padding: 20px 30px;
+            border-radius: 50px;
+            box-shadow: 0 10px 40px rgba(65, 105, 225, 0.25);
+            z-index: 1000;
+            opacity: 0;
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.3s ease;
+            border: 1px solid rgba(65, 105, 225, 0.1);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            font-style: italic;
+            color: var(--text-dark);
+            font-size: 1.05rem;
+        }
+
+        .love-message.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .love-message .heart {
+            color: var(--royal-blue);
+            margin-right: 8px;
+        }
+
+        /* Completion Message */
+        .completion-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(65, 105, 225, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s ease;
+            padding: 20px;
+        }
+
+        .completion-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .completion-message {
+            background: var(--white);
+            padding: 50px;
+            border-radius: 25px;
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            transform: scale(0.9);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .completion-overlay.show .completion-message {
+            transform: scale(1);
+        }
+
+        .completion-message h2 {
+            color: var(--royal-blue);
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .completion-message p {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .close-completion {
+            background: var(--royal-blue);
+            color: var(--white);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .close-completion:hover {
+            background: var(--royal-blue-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
         .footer {
             text-align: center;
-            margin-top: 30px;
+            margin-top: 40px;
             color: var(--text-light);
             font-size: 0.9rem;
-            padding: 0 20px;
-        }
-
-        .footer-content {
-            background-color: var(--white-heart);
             padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 3px 10px var(--shadow);
-            max-width: 500px;
-            margin: 0 auto;
-            border: 1px solid rgba(65, 105, 225, 0.1);
         }
 
-        .footer-hearts {
-            display: flex;
-            justify-content: center;
-            gap: 5px;
-            margin: 10px 0;
-        }
-
-        .footer-hearts .heart {
+        .footer-heart {
             color: var(--royal-blue);
-            font-size: 1.2rem;
-            animation: float 3s infinite ease-in-out;
+            margin: 0 5px;
+            animation: gentlePulse 3s infinite ease-in-out;
         }
 
-        .footer-hearts .heart:nth-child(2) {
-            animation-delay: 0.5s;
-        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header {
+                padding: 25px 0;
+                border-radius: 0 0 25px 25px;
+            }
 
-        .footer-hearts .heart:nth-child(3) {
-            animation-delay: 1s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
-        .motivational-message {
-            background-color: rgba(65, 105, 225, 0.05);
-            border-radius: 10px;
-            padding: 15px;
-            margin-top: 15px;
-            font-style: italic;
-            border-left: 3px solid var(--royal-blue);
-        }
-
-        @media (min-width: 768px) {
             .header h1 {
-                font-size: 2.2rem;
+                font-size: 1.7rem;
             }
-            
-            .alert {
-                margin: 20px auto;
-                max-width: 800px;
+
+            .header-subtitle {
+                font-size: 1rem;
+                padding: 0 15px;
             }
-            
-            .progress-container {
-                margin: 20px auto;
-                max-width: 800px;
+
+            .message-box {
+                padding: 20px;
             }
-            
-            .checklist-container {
-                max-width: 800px;
-                margin: 20px auto;
+
+            .category-header {
+                padding: 18px;
             }
-            
-            .category {
-                margin-bottom: 10px;
+
+            .category-header h2 {
+                font-size: 1.2rem;
+            }
+
+            .items-list {
+                padding: 20px;
+            }
+
+            .item {
+                padding: 12px;
+            }
+
+            .completion-message {
+                padding: 30px;
+            }
+
+            .completion-message h2 {
+                font-size: 1.7rem;
+            }
+
+            .completion-message p {
+                font-size: 1.1rem;
             }
         }
 
         @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+
             .header h1 {
                 font-size: 1.5rem;
             }
-            
+
+            .progress-section,
+            .category {
+                padding: 20px;
+            }
+
+            .category-header {
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-start;
+            }
+
             .category-header h2 {
                 font-size: 1.1rem;
             }
-            
+
             .item-label {
+                font-size: 1rem;
+            }
+
+            .love-message {
+                padding: 15px 20px;
                 font-size: 0.95rem;
             }
         }
@@ -428,51 +511,61 @@
 </head>
 <body>
     <div class="header">
-        <h1><i class="fas fa-heart" style="color: white;"></i> Checklist Réveillon em Alter do Chão <i class="fas fa-heart" style="color: white;"></i></h1>
-        <div class="heart-divider">
-            <div class="line"></div>
-            <div class="heart">🤍</div>
-            <div class="line"></div>
-        </div>
-        <p>Vamos juntos preparar tudo para essa viagem incrível! 🌴✨</p>
-    </div>
-
-    <div class="alert">
-        <i class="fas fa-exclamation-circle"></i>
-        <p><strong>Último checklist 💼✨</strong><br>A viagem é amanhã! Tenta deixar tudo prontinho até amanhã de manhã 🤍</p>
-    </div>
-
-    <div class="progress-container">
-        <div class="progress-title">
-            <span>Progresso da preparação</span>
-            <span id="progress-count">0/34</span>
-        </div>
-        <div class="progress-bar">
-            <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
-        </div>
-        <div class="progress-text" id="progress-text">
-            <i class="fas fa-heart" style="color: #4169e1;"></i>
-            <span>Comece marcando os itens que já separou</span>
-            <i class="fas fa-heart" style="color: #4169e1;"></i>
-        </div>
-    </div>
-
-    <div class="checklist-container" id="checklist-container">
-        <!-- As categorias serão inseridas aqui via JavaScript -->
-    </div>
-
-    <div class="footer">
-        <div class="footer-content">
-            <div class="footer-hearts">
-                <div class="heart">🤍</div>
-                <div class="heart">🤍</div>
-                <div class="heart">🤍</div>
+        <div class="container">
+            <div class="heart-icon">🤍</div>
+            <h1>Checklist Réveillon Camille</h1>
+            <div class="header-subtitle">
+                Mesmo de longe, eu tô com você 🤍<br>
+                Vamos deixar tudo prontinho até amanhã de manhã.
             </div>
-            <p>Feito com <span style="color: #4169e1;">💙</span> para sua viagem inesquecível em Alter do Chão</p>
-            <div class="motivational-message">
-                <p>"Cada item marcado é um passo mais perto da nossa aventura juntos! Estou torcendo por você! 💙🤍"</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="message-container">
+            <div class="message-box">
+                <p>Eu queria estar aí, mas vai por nós duas 🤍<br>
+                Aproveita cada pedacinho por mim.</p>
+                <div class="heart-divider">
+                    <i class="fas fa-circle"></i>
+                    <i class="fas fa-circle"></i>
+                    <i class="fas fa-circle"></i>
+                </div>
+                <p>Isso também é um pedacinho nosso.<br>
+                Te ver vivendo também me faz feliz.</p>
             </div>
-            <p style="margin-top: 15px;">Bom Réveillon e muita energia positiva para 2025! 🎉</p>
+        </div>
+
+        <div class="progress-section">
+            <div class="progress-title">
+                <span>Progresso da preparação</span>
+                <span id="progress-count">0/34</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+            </div>
+            <div class="progress-text" id="progress-text">Vamos começar juntas 🤍</div>
+        </div>
+
+        <div class="checklist-container" id="checklist-container">
+            <!-- As categorias serão inseridas aqui via JavaScript -->
+        </div>
+
+        <div class="footer">
+            <p>Feito com <span class="footer-heart">🤍</span> para uma viagem inesquecível</p>
+        </div>
+    </div>
+
+    <div class="love-message" id="love-message">
+        <span class="heart">🤍</span> <span id="message-text"></span>
+    </div>
+
+    <div class="completion-overlay" id="completion-overlay">
+        <div class="completion-message">
+            <h2>Tudo pronto 🤍</h2>
+            <p>Vai, vive, aproveita.<br>
+            Eu fico aqui torcendo pelo seu sorriso.</p>
+            <button class="close-completion" onclick="closeCompletion()">Continuar</button>
         </div>
     </div>
 
@@ -488,9 +581,8 @@
                     "Cartões e dinheiro",
                     "Celular",
                     "Carregador",
-                    "Power bank",
-                    "Passagens / comprovantes",
                     "Reserva de hospedagem"
+
                 ]
             },
             {
@@ -510,7 +602,7 @@
             {
                 id: "calcados",
                 name: "Calçados & Acessórios",
-                icon: "fas fa-socks",
+                icon: "fas fa-shoe-prints",
                 items: [
                     "Chinelo",
                     "Sandália confortável",
@@ -523,14 +615,14 @@
             {
                 id: "higiene",
                 name: "Higiene & Cuidados",
-                icon: "fas fa-soap",
+                icon: "fas fa-spa",
                 items: [
                     "Protetor solar",
                     "Protetor labial",
                     "Hidratante",
                     "Shampoo e condicionador",
                     "Escova e acessórios de cabelo",
-                    "Maquiagem (se usar)",
+                    "Maquiagem",
                     "Remédios de uso diário"
                 ]
             },
@@ -549,95 +641,111 @@
             }
         ];
 
-        // Carregar estado salvo do localStorage
+        // Mensagens de amor
+        const loveMessages = [
+            "Eu queria estar aí, mas vai por nós duas 🤍",
+            "Aproveita cada pedacinho por mim.",
+            "Isso também é um pedacinho nosso.",
+            "Te ver vivendo também me faz feliz.",
+            "Mesmo longe, meu coração vai com você.",
+            "Cada item pronto é um abraço meu.",
+            "Estou aqui, sempre, em cada detalhe.",
+            "Seu sorriso é meu lugar favorito.",
+            "Vai ser lindo, como você.",
+            "Pensa em mim quando estiver vendo o pôr do sol.",
+            "Cada momento seu é um momento nosso.",
+            "Linda, perfeita! Desculpa, não consigo resistir kakakaakak"
+            
+        ];
+
+        // Estado da aplicação
+        let checklistState = {};
+        let completedItems = 0;
+        const totalItems = checklistData.reduce((sum, category) => sum + category.items.length, 0);
+
+        // Carregar estado salvo
         function loadSavedState() {
-            const savedState = localStorage.getItem('reveillon-checklist-state');
-            if (savedState) {
-                return JSON.parse(savedState);
+            const saved = localStorage.getItem('alter-do-chao-checklist');
+            if (saved) {
+                return JSON.parse(saved);
             }
             return {};
         }
 
-        // Salvar estado no localStorage
-        function saveState(state) {
-            localStorage.setItem('reveillon-checklist-state', JSON.stringify(state));
+        // Salvar estado
+        function saveState() {
+            localStorage.setItem('alter-do-chao-checklist', JSON.stringify(checklistState));
         }
-
-        // Inicializar estado
-        const savedState = loadSavedState();
-        const checklistState = savedState || {};
 
         // Atualizar progresso
         function updateProgress() {
-            let totalItems = 0;
-            let checkedItems = 0;
+            completedItems = Object.values(checklistState).filter(item => item).length;
             
-            checklistData.forEach(category => {
-                category.items.forEach(item => {
-                    totalItems++;
-                    const itemKey = `${category.id}-${item}`;
-                    if (checklistState[itemKey]) {
-                        checkedItems++;
-                    }
-                });
-            });
-            
-            const progressPercentage = totalItems > 0 ? (checkedItems / totalItems) * 100 : 0;
-            
-            document.getElementById('progress-count').textContent = `${checkedItems}/${totalItems}`;
+            const progressPercentage = (completedItems / totalItems) * 100;
+            document.getElementById('progress-count').textContent = `${completedItems}/${totalItems}`;
             document.getElementById('progress-fill').style.width = `${progressPercentage}%`;
             
-            // Atualizar mensagem de progresso
+            // Atualizar texto motivacional
             const progressText = document.getElementById('progress-text');
-            if (checkedItems === 0) {
-                progressText.innerHTML = '<i class="fas fa-heart" style="color: #4169e1;"></i><span>Comece marcando os itens que já separou</span><i class="fas fa-heart" style="color: #4169e1;"></i>';
-            } else if (checkedItems === totalItems) {
-                progressText.innerHTML = '<i class="fas fa-heart" style="color: #4169e1;"></i><span>🎉 Tudo pronto! Agora é só curtir a viagem!</span><i class="fas fa-heart" style="color: #4169e1;"></i>';
-            } else if (checkedItems > totalItems / 2) {
-                progressText.innerHTML = '<i class="fas fa-heart" style="color: #4169e1;"></i><span>Ótimo progresso! Já está na metade do caminho!</span><i class="fas fa-heart" style="color: #4169e1;"></i>';
+            if (completedItems === 0) {
+                progressText.textContent = "Vamos começar juntas 🤍";
+            } else if (completedItems === totalItems) {
+                progressText.textContent = "Tudo pronto! Que viagem incrível vai ser 🤍";
+                showCompletionMessage();
+            } else if (completedItems > totalItems / 2) {
+                progressText.textContent = " Quase lá! 🤍";
             } else {
-                progressText.innerHTML = '<i class="fas fa-heart" style="color: #4169e1;"></i><span>Continue marcando os itens que já separou</span><i class="fas fa-heart" style="color: #4169e1;"></i>';
+                progressText.textContent = "Ótimo progresso! Continue assim 🤍";
+            }
+        }
+
+        // Mostrar mensagem de amor
+        function showLoveMessage() {
+            const messageElement = document.getElementById('love-message');
+            const textElement = document.getElementById('message-text');
+            
+            // Selecionar mensagem aleatória
+            const randomMessage = loveMessages[Math.floor(Math.random() * loveMessages.length)];
+            textElement.textContent = randomMessage;
+            
+            // Mostrar mensagem
+            messageElement.classList.add('show');
+            
+            // Ocultar após 3 segundos
+            setTimeout(() => {
+                messageElement.classList.remove('show');
+            }, 3000);
+        }
+
+        // Mostrar mensagem de conclusão
+        function showCompletionMessage() {
+            setTimeout(() => {
+                document.getElementById('completion-overlay').classList.add('show');
+            }, 500);
+        }
+
+        // Fechar mensagem de conclusão
+        function closeCompletion() {
+            document.getElementById('completion-overlay').classList.remove('show');
+        }
+
+        // Alternar item
+        function toggleItem(categoryId, itemName, wasChecked) {
+            const itemKey = `${categoryId}-${itemName}`;
+            checklistState[itemKey] = !wasChecked;
+            
+            saveState();
+            updateProgress();
+            
+            // Mostrar mensagem de amor apenas quando marcar (não quando desmarcar)
+            if (!wasChecked) {
+                showLoveMessage();
             }
             
-            // Atualizar mensagem motivacional no rodapé
-            updateMotivationalMessage(checkedItems, totalItems);
-        }
-
-        // Atualizar mensagem motivacional
-        function updateMotivationalMessage(checked, total) {
-            const messages = [
-                "Cada item marcado é um passo mais perto da nossa aventura juntos! Estou torcendo por você! 💙🤍",
-                "Você está indo muito bem! Logo tudo estará pronto para nossa viagem! 💙",
-                "Estamos quase lá! Que emoção preparar tudo para nosso Réveillon! 🤍",
-                "Que orgulho do seu progresso! Você é incrível! 💙🤍",
-                "Só mais um pouquinho! Já consigo sentir a energia boa de Alter do Chão! 🌴",
-                "Tudo pronto! Agora é só aproveitar cada momento da nossa viagem! 💙"
-            ];
-            
-            let messageIndex = 0;
-            const progressRatio = checked / total;
-            
-            if (progressRatio === 0) messageIndex = 0;
-            else if (progressRatio < 0.25) messageIndex = 1;
-            else if (progressRatio < 0.5) messageIndex = 2;
-            else if (progressRatio < 0.75) messageIndex = 3;
-            else if (progressRatio < 1) messageIndex = 4;
-            else messageIndex = 5;
-            
-            document.querySelector('.motivational-message p').textContent = messages[messageIndex];
-        }
-
-        // Alternar estado de um item
-        function toggleItem(categoryId, itemName) {
-            const itemKey = `${categoryId}-${itemName}`;
-            checklistState[itemKey] = !checklistState[itemKey];
-            
-            saveState(checklistState);
-            updateProgress();
             renderChecklist();
         }
 
-        // Renderizar a checklist
+        // Renderizar checklist
         function renderChecklist() {
             const container = document.getElementById('checklist-container');
             container.innerHTML = '';
@@ -645,7 +753,7 @@
             checklistData.forEach(category => {
                 let checkedCount = 0;
                 
-                // Contar itens marcados nesta categoria
+                // Contar itens marcados
                 category.items.forEach(item => {
                     const itemKey = `${category.id}-${item}`;
                     if (checklistState[itemKey]) {
@@ -661,17 +769,18 @@
                         <h2><i class="${category.icon}"></i> ${category.name}</h2>
                         <div class="category-count">${checkedCount}/${category.items.length}</div>
                     </div>
-                    <div class="items-list" id="items-${category.id}">
+                    <div class="items-list">
                         ${category.items.map(item => {
                             const itemKey = `${category.id}-${item}`;
                             const isChecked = checklistState[itemKey] || false;
                             
                             return `
-                                <div class="item ${isChecked ? 'checked' : 'unchecked'}" onclick="toggleItem('${category.id}', '${item}')">
+                                <div class="item ${isChecked ? 'checked' : 'unchecked'}" 
+                                     onclick="toggleItem('${category.id}', '${item}', ${isChecked})">
                                     <div class="checkbox ${isChecked ? 'checked' : ''}"></div>
                                     <div class="item-label">${item}</div>
                                     <div class="item-icon">
-                                        ${getItemIcon(category.id, item)}
+                                        <i class="fas fa-check-circle" style="opacity: ${isChecked ? '1' : '0.3'};"></i>
                                     </div>
                                 </div>
                             `;
@@ -683,52 +792,15 @@
             });
         }
 
-        // Obter ícone específico para cada item
-        function getItemIcon(categoryId, itemName) {
-            const iconMap = {
-                'RG ou CNH': 'fas fa-id-card',
-                'Cartões e dinheiro': 'fas fa-credit-card',
-                'Celular': 'fas fa-mobile-alt',
-                'Carregador': 'fas fa-plug',
-                'Power bank': 'fas fa-battery-full',
-                'Passagens / comprovantes': 'fas fa-ticket-alt',
-                'Reserva de hospedagem': 'fas fa-hotel',
-                'Biquínis': 'fas fa-swimmer',
-                'Saída de praia': 'fas fa-tshirt',
-                'Roupas leves (vestidos, shorts, regatas)': 'fas fa-tshirt',
-                'Roupa branca para o Réveillon': 'fas fa-star',
-                'Pijama': 'fas fa-bed',
-                'Roupa íntima': 'fas fa-user-secret',
-                'Casaco leve': 'fas fa-vest',
-                'Chinelo': 'fas fa-shoe-prints',
-                'Sandália confortável': 'fas fa-shoe-prints',
-                'Tênis': 'fas fa-walking',
-                'Óculos de sol': 'fas fa-sun',
-                'Boné ou chapéu': 'fas fa-hat-cowboy',
-                'Bolsa pequena ou pochete': 'fas fa-shopping-bag',
-                'Protetor solar': 'fas fa-sun',
-                'Protetor labial': 'fas fa-kiss-wink-heart',
-                'Hidratante': 'fas fa-spa',
-                'Shampoo e condicionador': 'fas fa-pump-soap',
-                'Escova e acessórios de cabelo': 'fas fa-air-freshener',
-                'Maquiagem (se usar)': 'fas fa-palette',
-                'Remédios de uso diário': 'fas fa-pills',
-                'Repelente': 'fas fa-bug',
-                'Canga': 'fas fa-ribbon',
-                'Toalha de praia': 'fas fa-bath',
-                'Garrafinha de água': 'fas fa-wine-bottle',
-                'Mochilinha para passeios': 'fas fa-hiking',
-                'Capa de celular à prova d\'água': 'fas fa-mobile-alt'
-            };
-            
-            return iconMap[itemName] ? `<i class="${iconMap[itemName]}"></i>` : '<i class="fas fa-heart" style="color: #4169e1;"></i>';
+        // Inicializar
+        function init() {
+            checklistState = loadSavedState();
+            updateProgress();
+            renderChecklist();
         }
 
-        // Inicializar
-        document.addEventListener('DOMContentLoaded', () => {
-            renderChecklist();
-            updateProgress();
-        });
+        // Iniciar quando o DOM estiver pronto
+        document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
 </html>
