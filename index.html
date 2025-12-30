@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checklist Réveillon em Alter do Chão</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --royal-blue: #4169e1;
+            --royal-blue-light: #5d7ce8;
+            --royal-blue-dark: #2a4fcc;
+            --white-heart: #ffffff;
+            --accent: #ffde59;
+            --light: #f8f9fa;
+            --text: #333;
+            --text-light: #666;
+            --border: #e0e0e0;
+            --success: #5cb85c;
+            --warning: #f0ad4e;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --beach-blue: #87ceeb;
+            --beach-sand: #f4e4c1;
+        }
+
+        body {
+            background-color: #f9f7f5;
+            color: var(--text);
+            line-height: 1.6;
+            background-image: 
+                linear-gradient(to bottom, rgba(65, 105, 225, 0.05), rgba(244, 228, 193, 0.05)),
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.9) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.7) 0%, transparent 50%);
+            min-height: 100vh;
+            padding-bottom: 40px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--royal-blue), var(--royal-blue-light));
+            color: var(--white-heart);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50,30 Q60,20 70,30 T90,30 Q95,35 90,40 T90,50 Q85,55 80,50 T60,50 Q55,45 50,50 T30,50 Q25,55 20,50 T10,50 Q5,45 10,40 T10,30 Q20,20 30,30 T50,30' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E"),
+                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30,70 Q40,60 50,70 T70,70 Q75,75 70,80 T70,90 Q65,95 60,90 T40,90 Q35,85 30,90 T10,90 Q5,85 10,80 T10,70 Q20,60 30,70' fill='%23ffffff' fill-opacity='0.1'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            opacity: 0.15;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .header p {
+            font-size: 1rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        .heart-divider {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 15px 0;
+            gap: 8px;
+        }
+
+        .heart-divider .heart {
+            color: var(--white-heart);
+            font-size: 1.2rem;
+            opacity: 0.8;
+        }
+
+        .heart-divider .line {
+            height: 1px;
+            width: 30px;
+            background-color: var(--white-heart);
+            opacity: 0.5;
+        }
+
+        .alert {
+            background-color: rgba(255, 255, 255, 0.95);
+            color: var(--text);
+            padding: 15px;
+            margin: 20px;
+            border-radius: 12px;
+            border-left: 5px solid var(--royal-blue);
+            box-shadow: 0 3px 10px var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .alert::before {
+            content: "💖";
+            position: absolute;
+            right: 10px;
+            bottom: 5px;
+            font-size: 2rem;
+            opacity: 0.1;
+        }
+
+        .alert i {
+            color: var(--royal-blue);
+            font-size: 1.5rem;
+        }
+
+        .alert p {
+            flex: 1;
+        }
+
+        .progress-container {
+            background-color: var(--white-heart);
+            margin: 20px;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px var(--shadow);
+            text-align: center;
+            border: 1px solid rgba(65, 105, 225, 0.1);
+        }
+
+        .progress-title {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .progress-bar {
+            height: 12px;
+            background-color: var(--border);
+            border-radius: 6px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, var(--royal-blue-light), var(--royal-blue));
+            border-radius: 6px;
+            transition: width 0.5s ease;
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 20px;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.3));
+        }
+
+        .progress-text {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .checklist-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin: 20px;
+        }
+
+        .category {
+            background-color: var(--white-heart);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px var(--shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(65, 105, 225, 0.1);
+        }
+
+        .category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(65, 105, 225, 0.15);
+        }
+
+        .category-header {
+            background: linear-gradient(to right, var(--royal-blue), var(--royal-blue-light));
+            color: var(--white-heart);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .category-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10,3 Q12,1 14,3 T18,3 Q19,4 18,5 T18,7 Q16,9 14,7 T10,7 Q9,6 10,5 T10,3' fill='%23ffffff' fill-opacity='0.2'/%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .category-header h2 {
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .category-count {
+            background-color: rgba(255, 255, 255, 0.3);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .items-list {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .item:hover {
+            background-color: rgba(65, 105, 225, 0.05);
+        }
+
+        .item.unchecked {
+            background-color: rgba(65, 105, 225, 0.03);
+            border-left: 3px solid var(--royal-blue);
+            position: relative;
+        }
+
+        .item.unchecked::before {
+            content: "💭";
+            position: absolute;
+            right: 10px;
+            opacity: 0.3;
+            font-size: 0.9rem;
+        }
+
+        .checkbox {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 2px solid var(--royal-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: all 0.2s;
+            background-color: var(--white-heart);
+        }
+
+        .checkbox:hover {
+            transform: scale(1.1);
+        }
+
+        .checkbox.checked {
+            background-color: var(--royal-blue);
+            border-color: var(--royal-blue);
+        }
+
+        .checkbox.checked::after {
+            content: "✓";
+            color: var(--white-heart);
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .item-label {
+            flex: 1;
+            font-size: 1rem;
+        }
+
+        .item.checked .item-label {
+            text-decoration: line-through;
+            color: var(--text-light);
+        }
+
+        .item-icon {
+            color: var(--royal-blue);
+            font-size: 1.2rem;
+            width: 30px;
+            text-align: center;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            padding: 0 20px;
+        }
+
+        .footer-content {
+            background-color: var(--white-heart);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px var(--shadow);
+            max-width: 500px;
+            margin: 0 auto;
+            border: 1px solid rgba(65, 105, 225, 0.1);
+        }
+
+        .footer-hearts {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin: 10px 0;
+        }
+
+        .footer-hearts .heart {
+            color: var(--royal-blue);
+            font-size: 1.2rem;
+            animation: float 3s infinite ease-in-out;
+        }
+
+        .footer-hearts .heart:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .footer-hearts .heart:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .motivational-message {
+            background-color: rgba(65, 105, 225, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            font-style: italic;
+            border-left: 3px solid var(--royal-blue);
+        }
+
+        @media (min-width: 768px) {
+            .header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .alert {
+                margin: 20px auto;
+                max-width: 800px;
+            }
+            
+            .progress-container {
+                margin: 20px auto;
+                max-width: 800px;
+            }
+            
+            .checklist-container {
+                max-width: 800px;
+                margin: 20px auto;
+            }
+            
+            .category {
+                margin-bottom: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .category-header h2 {
+                font-size: 1.1rem;
+            }
+            
+            .item-label {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1><i class="fas fa-heart" style="color: white;"></i> Checklist Réveillon em Alter do Chão <i class="fas fa-heart" style="color: white;"></i></h1>
+        <div class="heart-divider">
+            <div class="line"></div>
+            <div class="heart">🤍</div>
+            <div class="line"></div>
+        </div>
+        <p>Vamos juntos preparar tudo para essa viagem incrível! 🌴✨</p>
+    </div>
+
+    <div class="alert">
+        <i class="fas fa-exclamation-circle"></i>
+        <p><strong>Último checklist 💼✨</strong><br>A viagem é amanhã! Tenta deixar tudo prontinho até amanhã de manhã 🤍</p>
+    </div>
+
+    <div class="progress-container">
+        <div class="progress-title">
+            <span>Progresso da preparação</span>
+            <span id="progress-count">0/34</span>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+        </div>
+        <div class="progress-text" id="progress-text">
+            <i class="fas fa-heart" style="color: #4169e1;"></i>
+            <span>Comece marcando os itens que já separou</span>
+            <i class="fas fa-heart" style="color: #4169e1;"></i>
+        </div>
+    </div>
+
+    <div class="checklist-container" id="checklist-container">
+        <!-- As categorias serão inseridas aqui via JavaScript -->
+    </div>
+
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-hearts">
+                <div class="heart">🤍</div>
+                <div class="heart">🤍</div>
+                <div class="heart">🤍</div>
+            </div>
+            <p>Feito com <span style="color: #4169e1;">💙</span> para sua viagem inesquecível em Alter do Chão</p>
+            <div class="motivational-message">
+                <p>"Cada item marcado é um passo mais perto da nossa aventura juntos! Estou torcendo por você! 💙🤍"</p>
+            </div>
+            <p style="margin-top: 15px;">Bom Réveillon e muita energia positiva para 2025! 🎉</p>
+        </div>
+    </div>
+
+    <script>
+        // Dados da checklist
+        const checklistData = [
+            {
+                id: "documentos",
+                name: "Documentos & Essenciais",
+                icon: "fas fa-passport",
+                items: [
+                    "RG ou CNH",
+                    "Cartões e dinheiro",
+                    "Celular",
+                    "Carregador",
+                    "Power bank",
+                    "Passagens / comprovantes",
+                    "Reserva de hospedagem"
+                ]
+            },
+            {
+                id: "roupas",
+                name: "Roupas & Looks",
+                icon: "fas fa-tshirt",
+                items: [
+                    "Biquínis",
+                    "Saída de praia",
+                    "Roupas leves (vestidos, shorts, regatas)",
+                    "Roupa branca para o Réveillon",
+                    "Pijama",
+                    "Roupa íntima",
+                    "Casaco leve"
+                ]
+            },
+            {
+                id: "calcados",
+                name: "Calçados & Acessórios",
+                icon: "fas fa-socks",
+                items: [
+                    "Chinelo",
+                    "Sandália confortável",
+                    "Tênis",
+                    "Óculos de sol",
+                    "Boné ou chapéu",
+                    "Bolsa pequena ou pochete"
+                ]
+            },
+            {
+                id: "higiene",
+                name: "Higiene & Cuidados",
+                icon: "fas fa-soap",
+                items: [
+                    "Protetor solar",
+                    "Protetor labial",
+                    "Hidratante",
+                    "Shampoo e condicionador",
+                    "Escova e acessórios de cabelo",
+                    "Maquiagem (se usar)",
+                    "Remédios de uso diário"
+                ]
+            },
+            {
+                id: "extras",
+                name: "Extras para Alter do Chão",
+                icon: "fas fa-umbrella-beach",
+                items: [
+                    "Repelente",
+                    "Canga",
+                    "Toalha de praia",
+                    "Garrafinha de água",
+                    "Mochilinha para passeios",
+                    "Capa de celular à prova d'água"
+                ]
+            }
+        ];
+
+        // Carregar estado salvo do localStorage
+        function loadSavedState() {
+            const savedState = localStorage.getItem('reveillon-checklist-state');
+            if (savedState) {
+                return JSON.parse(savedState);
+            }
+            return {};
+        }
+
+        // Salvar estado no localStorage
+        function saveState(state) {
+            localStorage.setItem('reveillon-checklist-state', JSON.stringify(state));
+        }
+
+        // Inicializar estado
+        const savedState = loadSavedState();
+        const checklistState = savedState || {};
+
+        // Atualizar progresso
+        function updateProgress() {
+            let totalItems = 0;
+            let checkedItems = 0;
+            
+            checklistData.forEach(category => {
+                category.items.forEach(item => {
+                    totalItems++;
+                    const itemKey = `${category.id}-${item}`;
+                    if (checklistState[itemKey]) {
+                        checkedItems++;
+                    }
+                });
+            });
+            
+            const progressPercentage = totalItems > 0 ? (checkedItems / totalItems) * 100 : 0;
+            
+            document.getElementById('progress-count').textContent = `${checkedItems}/${totalItems}`;
+            document.getElementById('progress-fill').style.width = `${progressPercentage}%`;
+            
+            // Atualizar mensagem de progresso
+            const progressText = document.getElementById('progress-text');
+            if (checkedItems === 0) {
+                progressText.innerHTML = '<i class="fas fa-heart" style="color: #4169e1;"></i><span>Comece marcando os itens que já separou</span><i class="fas fa-heart" style="color: #4169e1;"></i>';
+            } else if (checkedItems === totalItems) {
+                progressText.innerHTML = '<i class="fas fa-heart" style="color: #4169e1;"></i><span>🎉 Tudo pronto! Agora é só curtir a viagem!</span><i class="fas fa-heart" style="color: #4169e1;"></i>';
+            } else if (checkedItems > totalItems / 2) {
+                progressText.innerHTML = '<i class="fas fa-heart" style="color: #4169e1;"></i><span>Ótimo progresso! Já está na metade do caminho!</span><i class="fas fa-heart" style="color: #4169e1;"></i>';
+            } else {
+                progressText.innerHTML = '<i class="fas fa-heart" style="color: #4169e1;"></i><span>Continue marcando os itens que já separou</span><i class="fas fa-heart" style="color: #4169e1;"></i>';
+            }
+            
+            // Atualizar mensagem motivacional no rodapé
+            updateMotivationalMessage(checkedItems, totalItems);
+        }
+
+        // Atualizar mensagem motivacional
+        function updateMotivationalMessage(checked, total) {
+            const messages = [
+                "Cada item marcado é um passo mais perto da nossa aventura juntos! Estou torcendo por você! 💙🤍",
+                "Você está indo muito bem! Logo tudo estará pronto para nossa viagem! 💙",
+                "Estamos quase lá! Que emoção preparar tudo para nosso Réveillon! 🤍",
+                "Que orgulho do seu progresso! Você é incrível! 💙🤍",
+                "Só mais um pouquinho! Já consigo sentir a energia boa de Alter do Chão! 🌴",
+                "Tudo pronto! Agora é só aproveitar cada momento da nossa viagem! 💙"
+            ];
+            
+            let messageIndex = 0;
+            const progressRatio = checked / total;
+            
+            if (progressRatio === 0) messageIndex = 0;
+            else if (progressRatio < 0.25) messageIndex = 1;
+            else if (progressRatio < 0.5) messageIndex = 2;
+            else if (progressRatio < 0.75) messageIndex = 3;
+            else if (progressRatio < 1) messageIndex = 4;
+            else messageIndex = 5;
+            
+            document.querySelector('.motivational-message p').textContent = messages[messageIndex];
+        }
+
+        // Alternar estado de um item
+        function toggleItem(categoryId, itemName) {
+            const itemKey = `${categoryId}-${itemName}`;
+            checklistState[itemKey] = !checklistState[itemKey];
+            
+            saveState(checklistState);
+            updateProgress();
+            renderChecklist();
+        }
+
+        // Renderizar a checklist
+        function renderChecklist() {
+            const container = document.getElementById('checklist-container');
+            container.innerHTML = '';
+            
+            checklistData.forEach(category => {
+                let checkedCount = 0;
+                
+                // Contar itens marcados nesta categoria
+                category.items.forEach(item => {
+                    const itemKey = `${category.id}-${item}`;
+                    if (checklistState[itemKey]) {
+                        checkedCount++;
+                    }
+                });
+                
+                const categoryElement = document.createElement('div');
+                categoryElement.className = 'category';
+                
+                categoryElement.innerHTML = `
+                    <div class="category-header">
+                        <h2><i class="${category.icon}"></i> ${category.name}</h2>
+                        <div class="category-count">${checkedCount}/${category.items.length}</div>
+                    </div>
+                    <div class="items-list" id="items-${category.id}">
+                        ${category.items.map(item => {
+                            const itemKey = `${category.id}-${item}`;
+                            const isChecked = checklistState[itemKey] || false;
+                            
+                            return `
+                                <div class="item ${isChecked ? 'checked' : 'unchecked'}" onclick="toggleItem('${category.id}', '${item}')">
+                                    <div class="checkbox ${isChecked ? 'checked' : ''}"></div>
+                                    <div class="item-label">${item}</div>
+                                    <div class="item-icon">
+                                        ${getItemIcon(category.id, item)}
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                `;
+                
+                container.appendChild(categoryElement);
+            });
+        }
+
+        // Obter ícone específico para cada item
+        function getItemIcon(categoryId, itemName) {
+            const iconMap = {
+                'RG ou CNH': 'fas fa-id-card',
+                'Cartões e dinheiro': 'fas fa-credit-card',
+                'Celular': 'fas fa-mobile-alt',
+                'Carregador': 'fas fa-plug',
+                'Power bank': 'fas fa-battery-full',
+                'Passagens / comprovantes': 'fas fa-ticket-alt',
+                'Reserva de hospedagem': 'fas fa-hotel',
+                'Biquínis': 'fas fa-swimmer',
+                'Saída de praia': 'fas fa-tshirt',
+                'Roupas leves (vestidos, shorts, regatas)': 'fas fa-tshirt',
+                'Roupa branca para o Réveillon': 'fas fa-star',
+                'Pijama': 'fas fa-bed',
+                'Roupa íntima': 'fas fa-user-secret',
+                'Casaco leve': 'fas fa-vest',
+                'Chinelo': 'fas fa-shoe-prints',
+                'Sandália confortável': 'fas fa-shoe-prints',
+                'Tênis': 'fas fa-walking',
+                'Óculos de sol': 'fas fa-sun',
+                'Boné ou chapéu': 'fas fa-hat-cowboy',
+                'Bolsa pequena ou pochete': 'fas fa-shopping-bag',
+                'Protetor solar': 'fas fa-sun',
+                'Protetor labial': 'fas fa-kiss-wink-heart',
+                'Hidratante': 'fas fa-spa',
+                'Shampoo e condicionador': 'fas fa-pump-soap',
+                'Escova e acessórios de cabelo': 'fas fa-air-freshener',
+                'Maquiagem (se usar)': 'fas fa-palette',
+                'Remédios de uso diário': 'fas fa-pills',
+                'Repelente': 'fas fa-bug',
+                'Canga': 'fas fa-ribbon',
+                'Toalha de praia': 'fas fa-bath',
+                'Garrafinha de água': 'fas fa-wine-bottle',
+                'Mochilinha para passeios': 'fas fa-hiking',
+                'Capa de celular à prova d\'água': 'fas fa-mobile-alt'
+            };
+            
+            return iconMap[itemName] ? `<i class="${iconMap[itemName]}"></i>` : '<i class="fas fa-heart" style="color: #4169e1;"></i>';
+        }
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', () => {
+            renderChecklist();
+            updateProgress();
+        });
+    </script>
+</body>
+</html>
