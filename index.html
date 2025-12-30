@@ -252,6 +252,7 @@
             cursor: pointer;
             transition: var(--transition);
             border: 1px solid transparent;
+            user-select: none;
         }
 
         .item:hover {
@@ -563,7 +564,7 @@
     <div class="completion-overlay" id="completion-overlay">
         <div class="completion-message">
             <h2>Tudo pronto 🤍</h2>
-            <p>Vai, vive, aproveita.<br>
+            <p>Vai, vive, aproveita por mim também!<br>
             Eu fico aqui torcendo pelo seu sorriso.</p>
             <button class="close-completion" onclick="closeCompletion()">Continuar</button>
         </div>
@@ -582,7 +583,6 @@
                     "Celular",
                     "Carregador",
                     "Reserva de hospedagem"
-
                 ]
             },
             {
@@ -593,7 +593,7 @@
                     "Biquínis",
                     "Saída de praia",
                     "Roupas leves (vestidos, shorts, regatas)",
-                    "Roupa branca para o Réveillon",
+                    "Roupa para o Réveillon",
                     "Pijama",
                     "Roupa íntima",
                     "Casaco leve"
@@ -651,11 +651,10 @@
             "Cada item pronto é um abraço meu.",
             "Estou aqui, sempre, em cada detalhe.",
             "Seu sorriso é meu lugar favorito.",
-            "Vai ser lindo, como você.",
+            "Vai ser lindo, como tudo que você toca.",
             "Pensa em mim quando estiver vendo o pôr do sol.",
             "Cada momento seu é um momento nosso.",
-            "Linda, perfeita! Desculpa, não consigo resistir kakakaakak"
-            
+            "Linda, perfeira! Foi mal, não consigo resistir kakakaka"
         ];
 
         // Estado da aplicação
@@ -693,7 +692,7 @@
                 progressText.textContent = "Tudo pronto! Que viagem incrível vai ser 🤍";
                 showCompletionMessage();
             } else if (completedItems > totalItems / 2) {
-                progressText.textContent = " Quase lá! 🤍";
+                progressText.textContent = "Estamos quase lá! Que orgulho 🤍";
             } else {
                 progressText.textContent = "Ótimo progresso! Continue assim 🤍";
             }
@@ -729,23 +728,26 @@
             document.getElementById('completion-overlay').classList.remove('show');
         }
 
-        // Alternar item
-        function toggleItem(categoryId, itemName, wasChecked) {
+        // Alternar item - FUNÇÃO CORRIGIDA
+        function toggleItem(categoryId, itemName) {
             const itemKey = `${categoryId}-${itemName}`;
-            checklistState[itemKey] = !wasChecked;
+            const currentState = checklistState[itemKey] || false;
+            
+            // Inverter o estado
+            checklistState[itemKey] = !currentState;
             
             saveState();
             updateProgress();
             
             // Mostrar mensagem de amor apenas quando marcar (não quando desmarcar)
-            if (!wasChecked) {
+            if (!currentState) {
                 showLoveMessage();
             }
             
             renderChecklist();
         }
 
-        // Renderizar checklist
+        // Renderizar checklist - FUNÇÃO REVISADA
         function renderChecklist() {
             const container = document.getElementById('checklist-container');
             container.innerHTML = '';
@@ -764,30 +766,46 @@
                 const categoryElement = document.createElement('div');
                 categoryElement.className = 'category';
                 
-                categoryElement.innerHTML = `
-                    <div class="category-header">
-                        <h2><i class="${category.icon}"></i> ${category.name}</h2>
-                        <div class="category-count">${checkedCount}/${category.items.length}</div>
-                    </div>
-                    <div class="items-list">
-                        ${category.items.map(item => {
-                            const itemKey = `${category.id}-${item}`;
-                            const isChecked = checklistState[itemKey] || false;
-                            
-                            return `
-                                <div class="item ${isChecked ? 'checked' : 'unchecked'}" 
-                                     onclick="toggleItem('${category.id}', '${item}', ${isChecked})">
-                                    <div class="checkbox ${isChecked ? 'checked' : ''}"></div>
-                                    <div class="item-label">${item}</div>
-                                    <div class="item-icon">
-                                        <i class="fas fa-check-circle" style="opacity: ${isChecked ? '1' : '0.3'};"></i>
-                                    </div>
-                                </div>
-                            `;
-                        }).join('')}
-                    </div>
+                // Criar cabeçalho da categoria
+                const categoryHeader = document.createElement('div');
+                categoryHeader.className = 'category-header';
+                categoryHeader.innerHTML = `
+                    <h2><i class="${category.icon}"></i> ${category.name}</h2>
+                    <div class="category-count">${checkedCount}/${category.items.length}</div>
                 `;
                 
+                // Criar lista de itens
+                const itemsList = document.createElement('div');
+                itemsList.className = 'items-list';
+                
+                // Adicionar cada item
+                category.items.forEach(item => {
+                    const itemKey = `${category.id}-${item}`;
+                    const isChecked = checklistState[itemKey] || false;
+                    
+                    const itemElement = document.createElement('div');
+                    itemElement.className = `item ${isChecked ? 'checked' : 'unchecked'}`;
+                    itemElement.setAttribute('data-category', category.id);
+                    itemElement.setAttribute('data-item', item);
+                    
+                    itemElement.innerHTML = `
+                        <div class="checkbox ${isChecked ? 'checked' : ''}"></div>
+                        <div class="item-label">${item}</div>
+                        <div class="item-icon">
+                            <i class="fas fa-check-circle" style="opacity: ${isChecked ? '1' : '0.3'};"></i>
+                        </div>
+                    `;
+                    
+                    // Adicionar evento de clique diretamente
+                    itemElement.addEventListener('click', () => {
+                        toggleItem(category.id, item);
+                    });
+                    
+                    itemsList.appendChild(itemElement);
+                });
+                
+                categoryElement.appendChild(categoryHeader);
+                categoryElement.appendChild(itemsList);
                 container.appendChild(categoryElement);
             });
         }
